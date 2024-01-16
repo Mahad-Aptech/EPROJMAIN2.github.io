@@ -25,6 +25,26 @@
     <link rel="stylesheet" href="assets/css/main.css" />
     <!-- responsive -->
     <link rel="stylesheet" href="assets/css/responsive.css" />
+    <script>
+      document
+        .getElementById("validateButton")
+        .addEventListener("click", function () {
+          // Get the credit card number input element and its value
+          var cardNumberInput = document.getElementById("cardNumber");
+          var cardNumber = cardNumberInput.value;
+
+          // Use a regular expression to check if the input is a valid credit card number
+          var regex =
+            /^((4\d{3})|(5[1-5]\d{2})|(6011))-?\d{4}-?\d{4}-?\d{4}|3[4,7]\d{13}$/;
+          if (!regex.test(cardNumber)) {
+            alert("Invalid credit card number");
+            return;
+          }
+
+          // If the credit card number is valid, you can proceed with the form submission
+          alert("Credit card number is valid");
+        });
+    </script>
     <style>
       #sizenacfx {
         font-size: 18px;
@@ -157,19 +177,18 @@
                   >
                     <div class="card-body">
                       <div class="billing-address-form">
-                        <form action="index.html">
-                          <p><input type="text" placeholder="Name" /></p>
-                          <p><input type="email" placeholder="Email" /></p>
-                          <p><input type="text" placeholder="Address" /></p>
-                          <p><input type="tel" placeholder="Phone" /></p>
+                        <form>
                           <p>
-                            <textarea
-                              name="bill"
-                              id="bill"
-                              cols="30"
-                              rows="10"
-                              placeholder="Say Something"
-                            ></textarea>
+                            <input type="text" placeholder="Name" required />
+                          </p>
+                          <p>
+                            <input type="email" placeholder="Email" required />
+                          </p>
+                          <p>
+                            <input type="text" placeholder="Address" required />
+                          </p>
+                          <p>
+                            <input type="tel" placeholder="Phone" required />
                           </p>
                         </form>
                       </div>
@@ -198,8 +217,47 @@
                     data-parent="#accordionExample"
                   >
                     <div class="card-body">
-                      <div class="shipping-address-form">
-                        <p>Your shipping address form is here.</p>
+                      <div class="card-body">
+                        <div class="billing-address-form">
+                          <form>
+                            <p>
+                              <input type="text" placeholder="Name" required />
+                            </p>
+                            <p>
+                              <input
+                                type="email"
+                                placeholder="Email"
+                                required
+                              />
+                            </p>
+                            <p>
+                              <input
+                                type="text"
+                                placeholder="Address line 1"
+                                required
+                              />
+                            </p>
+                            <p>
+                              <input
+                                type="text"
+                                placeholder="Address line 2"
+                                required
+                              />
+                            </p>
+                            <p>
+                              <input type="tel" placeholder="Phone" required />
+                            </p>
+                            <p>
+                              <textarea
+                                name="bill"
+                                id="bill"
+                                cols="30"
+                                rows="10"
+                                placeholder="Comments for the delivery service or any local land marks"
+                              ></textarea>
+                            </p>
+                          </form>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -226,8 +284,55 @@
                     data-parent="#accordionExample"
                   >
                     <div class="card-body">
-                      <div class="card-details">
-                        <p>Your card details goes here.</p>
+                      <div class="billing-address-form">
+                        <form>
+                          <p>
+                            <input
+                              type="text"
+                              placeholder="Name on Card"
+                              required
+                            />
+                          </p>
+                          <p>
+                            <input
+                              type="text"
+                              id="cardNumber"
+                              name="cardNumber"
+                              placeholder="Enter Your Cards Number"
+                              required
+                              maxlength="16"
+                              minlength="16"
+                              oninput="this.value = this.value.replace(/[^0-9.]/g, '');"
+                            />
+                          </p>
+                          <p>
+                            <input
+                              type="text"
+                              id="CVV"
+                              name="CVV"
+                              placeholder="CVV"
+                              required
+                              maxlength="4"
+                              minlength="3"
+                              oninput="this.value = this.value.replace(/[^0-9.]/g, '');"
+                            />
+                          </p>
+                          <p>
+                            <input
+                              type="date"
+                              placeholder="Expiry date"
+                              required
+                            />
+                          </p>
+                          <p>
+                            <input
+                              id="validateButton"
+                              type="submit"
+                              name="submit"
+                              value="Submit"
+                            />
+                          </p>
+                        </form>
                       </div>
                     </div>
                   </div>
@@ -282,7 +387,7 @@
                   </tr>
                 </tbody>
               </table>
-              <a href="404.html" class="boxed-btn">Place Order</a>
+              <a id="v" class="boxed-btn">Place Order</a>
             </div>
           </div>
         </div>
