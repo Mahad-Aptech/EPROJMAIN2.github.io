@@ -26,24 +26,11 @@
     <!-- responsive -->
     <link rel="stylesheet" href="assets/css/responsive.css" />
     <script>
-      document
-        .getElementById("validateButton")
-        .addEventListener("click", function () {
-          // Get the credit card number input element and its value
-          var cardNumberInput = document.getElementById("cardNumber");
-          var cardNumber = cardNumberInput.value;
-
-          // Use a regular expression to check if the input is a valid credit card number
-          var regex =
-            /^((4\d{3})|(5[1-5]\d{2})|(6011))-?\d{4}-?\d{4}-?\d{4}|3[4,7]\d{13}$/;
-          if (!regex.test(cardNumber)) {
-            alert("Invalid credit card number");
-            return;
-          }
-
-          // If the credit card number is valid, you can proceed with the form submission
-          alert("Credit card number is valid");
+      document.querySelectorAll(".placeOrderButton").forEach(function (button) {
+        button.addEventListener("click", function () {
+          alert("Your order has been placed. You will be contacted soon.");
         });
+      });
     </script>
     <style>
       #sizenacfx {
@@ -285,7 +272,7 @@
                   >
                     <div class="card-body">
                       <div class="billing-address-form">
-                        <form>
+                        <form id="checkoutForm">
                           <p>
                             <input
                               type="text"
@@ -326,7 +313,7 @@
                           </p>
                           <p>
                             <input
-                              id="validateButton"
+                              id="checkoutForm"
                               type="submit"
                               name="submit"
                               value="Submit"
@@ -387,7 +374,9 @@
                   </tr>
                 </tbody>
               </table>
-              <a id="v" class="boxed-btn">Place Order</a>
+              <a href="404.html" class="placeOrder Button boxed-btn"
+                >Place Order</a
+              >
             </div>
           </div>
         </div>
